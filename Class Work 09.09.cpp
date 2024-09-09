@@ -1,6 +1,14 @@
 #include <iostream>
 #include <time.h>
+#include <windows.h>
 using namespace std;
+
+void SetColor(int textColor, int bgColor)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole,
+		(bgColor << 4) | textColor);
+}
 
 int randint(int min, int max) {
 	return(rand() % (max - min + 1) + min);
@@ -8,6 +16,7 @@ int randint(int min, int max) {
 
 int main()
 {
+	SetColor(10, 0);
 	int a, b, t = 0, d, e;
 	srand(time(NULL));
 	d = time(NULL);
@@ -42,6 +51,7 @@ int main()
 		}
 	}
 	e = time(NULL);
+	
 	cout << "Number is: " << a << ";\n" << t << " tries\n" << (e - d) << " seconds";
 
 	return 0;
