@@ -17,42 +17,76 @@ int randint(int min, int max) {
 int main()
 {
 	SetColor(10, 0);
-	int a, b, t = 0, d, e;
-	srand(time(NULL));
-	d = time(NULL);
-	a = randint(0, 200);
-	cout << a << "\n";
-	cout << "Vgadai chislo:\n";
+	int a, b, c;
+
+	cout << "diapazon vid:";
+	cin >> a;
+
+	cout << "diapazon do:";
 	cin >> b;
-	while (true)
-	{
-		t++;
-		if (b == 0) {
-			break;
+
+	cout << "1 - parni, 2 - neparni, 3 - vsi kratni sim: ";
+	cin >> c;
+
+	if (a > b) {
+		if (c == 1) {
+			for (int i = a; i > b; i--) {
+				if (i % 2 == 0) {
+					cout << i << " ";
+				}
+			}
 		}
-		if (a == b) {
-			cout << "you win!";
-			break;
+		else if (c == 2) {
+			for (int i = a; i > b; i--) {
+				if (i % 2 != 0) {
+					cout << i << " ";
+				}
+			}
 		}
-		else
-		{
-			cout << "Nevirno,";
-			if (a - b >= -20 && a - b <= 20) {
-				cout << "garacho";
+		else if (c == 3) {
+			for (int i = a; i > b; i--) {
+				if (i % 7 == 0) {
+					cout << i << " ";
+				}
 			}
-			else if (a - b >= -50 && a - b <= 50) {
-				cout << "teplo";
+
+		}
+
+	}
+	else {
+		if (c == 1) {
+			for (int i = a; i < b; i++) {
+				if (i % 2 == 0) {
+					cout << i << " ";
+				}
 			}
-			else if (a - b >= -100 && a - b <= 100) {
-				cout << "holodno";
+		}
+		else if (c == 2) {
+			for (int i = a; i < b; i++) {
+				if (i % 2 != 0) {
+					cout << i << " ";
+				}
 			}
-			cout << "\n";
-			cin >> b;
+		}
+		else if (c == 3) {
+			for (int i = a; i < b; i++) {
+				if (i % 7 == 0) {
+					cout << i << " ";
+				}
+			}
+
 		}
 	}
-	e = time(NULL);
-	
-	cout << "Number is: " << a << ";\n" << t << " tries\n" << (e - d) << " seconds";
 
+
+
+	/*
+	int a, b;
+	cout << "diapazon do:";
+	cin >> a;
+	for (int i = 0; i < a; i++) {
+		cout << i << " ";
+	}
+	*/
 	return 0;
 }
