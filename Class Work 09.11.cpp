@@ -18,76 +18,16 @@ int main()
 {
 	SetColor(2, 0);
 	int a, b, c;
-	for (int i = 0; i < 100000; i++) {
+	a = (randint(10, 25));
+
+	for (int i = 0; i < 1000000; i++) {
 		cout << randint(1, 1000000);
-		if (i % (randint(1, 10) == 0) {
+		if (i % a == 0){
 			cout << "\n";
+			a = (randint(15, 30));
 		}
-		
 	}
 	
-	/*
-	cout << "diapazon vid:";
-	cin >> a;
-
-	cout << "diapazon do:";
-	cin >> b;
-
-	cout << "1 - parni, 2 - neparni, 3 - vsi kratni sim: ";
-	cin >> c;
-
-	if (a > b) {
-		if (c == 1) {
-			for (int i = a; i > b; i--) {
-				if (i % 2 == 0) {
-					cout << i << " ";
-					
-				}
-			}
-		}
-		else if (c == 2) {
-			for (int i = a; i > b; i--) {
-				if (i % 2 != 0) {
-					cout << i << " ";
-				}
-			}
-		}
-		else if (c == 3) {
-			for (int i = a; i > b; i--) {
-				if (i % 7 == 0) {
-					cout << i << " ";
-				}
-			}
-
-		}
-
-	}
-	else {
-		if (c == 1) {
-			for (int i = a; i < b; i++) {
-				if (i % 2 == 0) {
-					cout << i << " ";
-				}
-			}
-		}
-		else if (c == 2) {
-			for (int i = a; i < b; i++) {
-				if (i % 2 != 0) {
-					cout << i << " ";
-				}
-			}
-		}
-		else if (c == 3) {
-			for (int i = a; i < b; i++) {
-				if (i % 7 == 0) {
-					cout << i << " ";
-				}
-			}
-
-		}
-	}
-*/
-
 
 	return 0;
 }
