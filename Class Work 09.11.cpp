@@ -18,14 +18,15 @@ int main()
 {
 	SetColor(2, 0);
 	int a, b, c;
-	a = (randint(10, 25));
+	while (true)
+	{
+		cout << "Choose action:\n";
 
-	for (int i = 0; i < 1000000; i++) {
-		cout << randint(1, 1000000);
-		if (i % a == 0){
-			cout << "\n";
-			a = (randint(15, 30));
-		}
+		cout << "1. osincki\n";
+		cout << "2. esli parnoe chislo x 3, esli net to / 2\n";
+		cout << "3. kalkulator\n";
+
+		cout << "\033[2J\033[1;1H";
 	}
 	
 
