@@ -19,8 +19,7 @@ int main()
 	SetColor(2, 0);
 	char vibor, znak;
 	int numb_2;
-	while (true)
-	{
+	while (true) {
 		cout << "Choose action:\n";
 
 		cout << "1. osincki\n";
@@ -32,6 +31,16 @@ int main()
 		cin >> vibor;
 
 		if (vibor == '0') {
+			break;
+		}
+		else if (vibor != '1', '2', '3') {
+			cout << "\033[2J\033[1;1H";
+			SetColor(4, 0);
+			for (int n = 0; n < 10; n++) {
+				cout << "ERORR!!!!!!\n";
+				Sleep(1000);
+			}
+			SetColor(2, 0);
 			break;
 		}
 		cout << "\033[2J\033[1;1H";
@@ -99,9 +108,6 @@ int main()
 			break;
 		}
 
-
-		
-		
 	}
 
 
