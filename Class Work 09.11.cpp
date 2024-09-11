@@ -14,6 +14,7 @@ int randint(int min, int max) {
 	return(rand() % (max - min + 1) + min);
 }
 
+
 int main()
 {
 	SetColor(2, 0);
@@ -40,6 +41,7 @@ int main()
 				cout << "ERORR!!!!!!\n";
 				Sleep(1000);
 			}
+			cout << "\033[2J\033[1;1H";
 			SetColor(2, 0);
 			break;
 		}
