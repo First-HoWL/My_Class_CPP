@@ -38,7 +38,7 @@ int main()
 		float a, b, c, d, e;
 		switch (vibor)
 		{
-		case('1'):
+		case '1':
 			cout << "vvedit 5 osinok\n";
 			cin >> a >> b >> c >> d >> e;
 			cout << "\033[2J\033[1;1H";
@@ -49,7 +49,7 @@ int main()
 				cout <<(a + b + c + d + e) / 5 << "\n ne dopychen \n\n";
 			}
 			break;
-		case('2'):
+		case '2':
 			cout << "type the number: ";
 			cin >> numb_2;
 			if (numb_2 % 2 == 0) {
@@ -60,7 +60,7 @@ int main()
 				cout << numb_2 / 2 << endl;
 			}
 			break;
-		case('3'):
+		case '3':
 			int fir, sec;
 
 			cout << "kalkulator \n";
@@ -75,19 +75,19 @@ int main()
 			cout << "\033[2J\033[1;1H";
 			switch (znak)
 			{
-			case('+') :
+			case '+':
 				cout << fir << " + " << sec << " = " << fir + sec << endl;
 				break;
 
-			case('-'):
+			case '-':
 				cout << fir << " - " << sec << " = " << fir - sec << endl;
 				break;
 
-			case('*'):
+			case '*':
 				cout << fir << " * " << sec << " = " << fir * sec << endl;
 				break;
 
-			case('/'):
+			case '/':
 				cout << fir << " / " << sec << " = " << fir / sec << endl;
 				break;
 								
