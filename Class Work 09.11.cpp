@@ -17,8 +17,9 @@ int randint(int min, int max) {
 int main()
 {
 	SetColor(2, 0);
-	int vibor, numb_2;
-	while (true)	
+	char vibor, znak;
+	int numb_2;
+	while (true)
 	{
 		cout << "Choose action:\n";
 
@@ -26,28 +27,30 @@ int main()
 		cout << "2. esli parnoe chislo x 3, esli net to / 2\n";
 		cout << "3. kalkulator\n";
 		cout << "0. Exit\n";
+		cout << " >> ";
 
 		cin >> vibor;
 
-		if (vibor == 0) {
+		if (vibor == '0') {
 			break;
 		}
-
+		cout << "\033[2J\033[1;1H";
 		float a, b, c, d, e;
 		switch (vibor)
 		{
 		case('1'):
 			cout << "vvedit 5 osinok\n";
 			cin >> a >> b >> c >> d >> e;
+			cout << "\033[2J\033[1;1H";
 			if ((a + b + c + d + e) / 5 >= 4) {
-				cout << (a + b + c + d + e) / 5 << "\n dopychen";
+				cout <<(a + b + c + d + e) / 5 << ", dopychen \n\n";
 			}
-			else{
-				cout << (a + b + c + d + e) / 5 << "\n ne dopychen";
+			else {
+				cout <<(a + b + c + d + e) / 5 << "\n ne dopychen \n\n";
 			}
 			break;
 		case('2'):
-			cout << "type the number";
+			cout << "type the number: ";
 			cin >> numb_2;
 			if (numb_2 % 2 == 0) {
 				cout << numb_2 * 3 << endl;
@@ -58,15 +61,47 @@ int main()
 			}
 			break;
 		case('3'):
-			cout << "kalkulator";
+			int fir, sec;
+
+			cout << "kalkulator \n";
+			cout << "perche chislo: ";
+			cin >> fir;
+
+			cout << "dryge chislo: ";
+			cin >> sec;
+
+			cout << "znak: ";
+			cin >> znak;
+			cout << "\033[2J\033[1;1H";
+			switch (znak)
+			{
+			case('+') :
+				cout << fir << " + " << sec << " = " << fir + sec << endl;
+				break;
+
+			case('-'):
+				cout << fir << " - " << sec << " = " << fir - sec << endl;
+				break;
+
+			case('*'):
+				cout << fir << " * " << sec << " = " << fir * sec << endl;
+				break;
+
+			case('/'):
+				cout << fir << " / " << sec << " = " << fir / sec << endl;
+				break;
+								
+			default:
+				break;
+			}
 			break;
 		default:
 			break;
 		}
 
 
-
-		cout << "\033[2J\033[1;1H";
+		
+		
 	}
 
 
