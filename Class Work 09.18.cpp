@@ -48,10 +48,40 @@ int main()
 	srand(time(NULL));
 
 
+
+	const int rows = 13;
+	const int cols = 13;
+	int product[rows][cols] = { {0} };
+	
+
+	for (int i = 0; i < rows - 1; i++)
+		for (int j = 0; j < cols - 1; j++)
+			product[i][j] = i * j;
+
+	
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+			if (product[i][j] != 0)
+				cout << product[i][j] << "\t";
+			else
+				cout << "HHHHHHH" << "\t";
+
+		cout << '\n';
+	}
+
+
+
+
+
+
+	/*
+
 	const int rows = 7, columns = 7;
 
 	int array[rows][columns], choose_numb, new_numb;
-	int min_massiv[rows], max_massiv[rows];
+	int min_massiv[rows], max_massiv[rows], summa[rows];
+	float avg[rows];
 	char choose;
 	float seredne, sum = 0;
 
@@ -63,55 +93,68 @@ int main()
 
 	}
 
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < columns; j++)
-		{
-			cout << array[i][j] << "\t";
-		}
-		cout << endl;
-
-	}
-
+	
+	cout << "\n";
 	// #1
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++)
 		{
 			sum += array[i][j];
 		}
+		cout << "summa(" << i + 1 << " col): " << sum << endl;
+		summa[i] = sum;
+		sum = 0;
 	}
-
+	cout << "\n";
 	// #2
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++)
 		{
 			sum += array[i][j];
 		}
-		seredne = sum / (rows * columns);
-
+		seredne = sum / columns;
+		cout << "seredne(" << i + 1 << " col): " << seredne << endl;
+		avg[i] = seredne;
+		sum = 0;
 	}
-
+	cout << "\n";
 	// #3
 	for (int i = 0; i < rows; i++) {
 		bubble_sort(array[i], columns);
 		min_massiv[i] = array[i][columns - 1];
 	}
-	bubble_sort(min_massiv, rows);
+	
 
 	// #4
 	for (int i = 0; i < rows; i++) {
 		bubble_sort(array[i], columns);
 		max_massiv[i] = array[i][0];
 	}
-	bubble_sort(max_massiv, rows);
-
-	cout << "summa: " << sum << endl;
-	cout << "seredne: " << seredne << endl;
-	cout << "min: " << min_massiv[rows - 1] << endl;
-	cout << "max: " << max_massiv[0] << endl;
-	sum = 0;
 
 
+	for (int i = 0; i < rows; i++) {
+		cout << "min(" << i + 1 <<" col): " << min_massiv[i] << endl;
+	}
+	cout << "\n";
+	for (int i = 0; i < rows; i++) {
+		cout << "max(" << i + 1 << " col): " << max_massiv[i] << endl;
+	}
+	
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < columns; j++)
+		{
+			cout << array[i][j] << "\t";
+		}
 
+		cout << "|" << "    sum: " << summa[i] << "  \tavg: " << avg[i] << "  \t\tmin: " << min_massiv[i] << "  \tmax: " << max_massiv[i];
+
+
+		cout << endl;
+
+	}
+
+
+	*/
 	/*
 	const int rows = 18, columns = 35;
 
