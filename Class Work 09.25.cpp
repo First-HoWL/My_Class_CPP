@@ -81,14 +81,11 @@ int max_array(int array[], int len) {
 }
 
 void delete1(int array[], int& size) {
-	bool is_changet = true;
-	while (is_changet) {
-		is_changet = false;
-		for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; i++){
 		if (array[i] < 0){
 			swap(array[i], array[size - 1]);
 			size--;
-			is_changet = true;
+			i--;
 		}
 	}
 }
