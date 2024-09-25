@@ -80,21 +80,38 @@ int max_array(int array[], int len) {
 	return max;
 }
 
+void delete1(int array[], int& size) {
+	bool is_changet = true;
+	while (is_changet) {
+		is_changet = false;
+		for (int i = 0; i < size; i++)
+		if (array[i] < 0){
+			swap(array[i], array[size - 1]);
+			size--;
+			is_changet = true;
+		}
+	}
+}
+
 int main()
 {
 	srand(time(0));
 	const int len = 10;
+	int size = len;
 	int array[len];
 	for (int i = 0; i < len; i++) {
 		array[i] = randint(-50, 50);
 	}
 
-	cout_masiv(array, len);
-	cout << "\nsumma: " << summa(array, len) << endl;
+	cout_masiv(array, size);
+	cout << "\nsumma: " << summa(array, size) << endl;
 
-	cout << "min: " << min_array(array, len) << endl;
-	cout << "max: " << max_array(array, len) << endl;
-	cout << "parnih: " << kilkist_parnih(array, len) << endl;
+	cout << "min: " << min_array(array, size) << endl;
+	cout << "max: " << max_array(array, size) << endl;
+	cout << "parnih: " << kilkist_parnih(array, size) << endl;
+
+	delete1(array, size);
+	cout_masiv(array, size);
 
 	return 0;
 }
