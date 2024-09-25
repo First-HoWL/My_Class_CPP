@@ -82,13 +82,25 @@ int max_array(int array[], int len) {
 
 void delete1(int array[], int& size) {
 	for (int i = 0; i < size; i++){
-		if (array[i] < 0){
+		if (array[i] < 0){ // for homework (array[i] % 2 != 0)
 			swap(array[i], array[size - 1]);
 			size--;
 			i--;
 		}
 	}
 }
+
+void delete2(int array[], int& size) {
+	for (int i = 0; i < size; i++) {
+		if (array[i] < 0) {
+			for (int j = i; j < size - 1; j++)
+				array[j] = array[j - 1];
+		}
+		size--;
+		i--;
+	}
+}
+
 
 int main()
 {
