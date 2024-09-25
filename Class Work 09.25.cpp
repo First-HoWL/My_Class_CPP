@@ -60,6 +60,26 @@ int kilkist_parnih(int array[], int len) {
 	return kilkist;
 }
 
+int min_array(int array[], int len) {
+	int min = array[0];
+	for (int i = 0; i < len; i++) {
+		if (min > array[i]) {
+			min = array[i];
+		}
+	}
+	return min;
+}
+
+int max_array(int array[], int len) {
+	int max = array[0];
+	for (int i = 0; i < len; i++) {
+		if (max < array[i]) {
+			max = array[i];
+		}
+	}
+	return max;
+}
+
 int main()
 {
 	srand(time(0));
@@ -71,10 +91,9 @@ int main()
 
 	cout_masiv(array, len);
 	cout << "\nsumma: " << summa(array, len) << endl;
-	bubble_sort(array, len);
 
-	cout << "min: " << array[(len - 1)] << endl;
-	cout << "max: " << array[0] << endl;
+	cout << "min: " << min_array(array, len) << endl;
+	cout << "max: " << max_array(array, len) << endl;
 	cout << "parnih: " << kilkist_parnih(array, len) << endl;
 
 	return 0;
