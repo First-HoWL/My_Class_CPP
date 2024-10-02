@@ -1,1 +1,95 @@
+#include <iostream>
+#include <time.h>
+#include <windows.h>
+using namespace std;
 
+void SetColor(int textColor, int bgColor)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole,
+		(bgColor << 4) | textColor);
+}
+
+void cout_masiv(int array[], int len, int a, int b) {
+	for (int i = 0; i < len; i++)
+	{
+		if (i == a || i == b) {
+			SetColor(5, 0);
+			cout << array[i];
+			SetColor(7, 0);
+			cout << ", ";
+		}
+		else if (i > a && i < b) {
+			SetColor(2, 0);
+			cout << array[i];
+			SetColor(7, 0);
+			cout << ", ";
+		}
+		else {
+			cout << array[i] << ", ";
+		}
+		
+	}
+	cout << "\b\b." << endl;
+}
+
+int randint(int min, int max) {
+	return(rand() % (max - min + 1) + min);
+}
+
+float seredne_arefmetichne(int array[], int len) {
+	float seredne = 0;
+	for (int i = 0; i < len; i++) {
+		seredne += array[i];
+	}
+	seredne = seredne / len;
+	return seredne;
+}
+
+int main()
+{
+	srand(time(0));
+	int size1 = 0, num_f_0 = -1, num_s_0 = -1;
+	float sum = 0, avg = 0;
+
+
+	cout << "Enter array size: ";
+	cin >> size1;
+
+	int* array1 = new int[size1];
+
+	for (int i = 0; i < size1; i++) {
+		array1[i] = randint(0, 10);
+	}
+
+	for (int i = 0; i < size1; i++) {
+		if (array1[i] == 0) {
+			num_f_0 = i;
+			break;
+		}
+	}
+
+	for (int i = size1 - 1; i > 0; i--) {
+		if (array1[i] == 0) {
+			num_s_0 = i;
+			break;
+		}
+	}
+	cout_masiv(array1, size1, num_f_0, num_s_0);
+	if (num_f_0 == -1 || num_s_0 == -1 || num_f_0 == num_s_0 || num_s_0 - num_f_0 == 1) {
+		SetColor(4, 0);
+		cout << "ERROR!" << endl;
+		SetColor(7, 0);
+	}
+	else{
+		for (int i = num_f_0; i < num_s_0; i++) {
+			sum += array1[i];
+		}
+		avg = sum / (num_s_0 - num_f_0 - 1);
+
+		cout << "\nperchii null: " << num_f_0 << " poslednii null: " << num_s_0 << endl;
+		cout << "summa: " << sum << " avg: " << avg << endl;
+	}
+	delete[] array1;
+	return 0;
+}
