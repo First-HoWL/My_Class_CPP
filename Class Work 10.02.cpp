@@ -46,21 +46,76 @@ float seredne_arefmetichne(int array[], int len) {
 	return seredne;
 }
 
+int minimum(int array[], int len) {
+	int min = 0, min_mis = 0;
+	for (int i = 0; i < len; i++) {
+		if (array[i] < min) {
+			min = array[i];
+			min_mis = i;
+		}
+	}
+	return min_mis;
+}
+
+int maximum(int array[], int len) {
+	int max = 0, max_mis = 0;
+	for (int i = 0; i < len; i++) {
+		if (array[i] > max) {
+			max = array[i];
+			max_mis = i;
+		}
+	}
+	return max_mis;
+}
+
+
 int main()
 {
 	srand(time(0));
 	int size1 = 0, num_f_0 = -1, num_s_0 = -1;
 	float sum = 0, avg = 0;
+	char vibor;
 
-
-	cout << "Enter array size: ";
+	cout << "Misyaciv: ";
 	cin >> size1;
 
 	int* array1 = new int[size1];
 
 	for (int i = 0; i < size1; i++) {
-		array1[i] = randint(0, 10);
+		array1[i] = randint(200, 1000);
 	}
+
+	while (true) {
+
+		for (int i = 0; i < size1; i++) {
+			cout << array1[i] << "$\t";
+		}
+
+		cout << "min: " << array1[minimum(array1, size1)] << "$\t";
+		cout << "lyshii misyac: " << array1[maximum(array1, size1)] << "$\t";
+		cout << "avg: " << seredne_arefmetichne(array1, size1) << "$\n";
+
+		cout << "\n -1. Zaverchit roboty";
+		cout << "\n -2. Dodaty misyac";
+		cin >> vibor;
+		
+		switch (vibor)
+		{
+		case'1':{
+
+				break;
+		}
+		case'2':{
+
+				break;
+			}
+		default:
+			break;
+		}
+
+	}
+
+
 
 	for (int i = 0; i < size1; i++) {
 		if (array1[i] == 0) {
