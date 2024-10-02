@@ -28,7 +28,7 @@ void cout_masiv(int array[], int len, int a, int b) {
 		else {
 			cout << array[i] << ", ";
 		}
-		
+
 	}
 	cout << "\b\b." << endl;
 }
@@ -47,7 +47,7 @@ float seredne_arefmetichne(int array[], int len) {
 }
 
 int minimum(int array[], int len) {
-	int min = 0, min_mis = 0;
+	int min = 10000, min_mis = 0;
 	for (int i = 0; i < len; i++) {
 		if (array[i] < min) {
 			min = array[i];
@@ -75,6 +75,7 @@ int main()
 	int size1 = 0, num_f_0 = -1, num_s_0 = -1;
 	float sum = 0, avg = 0;
 	char vibor;
+	bool stop = false;
 
 	cout << "Misyaciv: ";
 	cin >> size1;
@@ -90,61 +91,36 @@ int main()
 		for (int i = 0; i < size1; i++) {
 			cout << array1[i] << "$\t";
 		}
-
+		cout << "\b\b\n";
 		cout << "min: " << array1[minimum(array1, size1)] << "$\t";
-		cout << "lyshii misyac: " << array1[maximum(array1, size1)] << "$\t";
+		cout << "max: " << array1[maximum(array1, size1)] << "$\t";
 		cout << "avg: " << seredne_arefmetichne(array1, size1) << "$\n";
 
 		cout << "\n -1. Zaverchit roboty";
-		cout << "\n -2. Dodaty misyac";
+		cout << "\n -2. Dodaty misyac\n >>";
 		cin >> vibor;
-		
+
 		switch (vibor)
 		{
-		case'1':{
-
-				break;
+		case'1': {
+			stop = true;
+			break;
 		}
-		case'2':{
-
-				break;
-			}
+		case'2': {
+			size1++;
+			cout << "Vvedite novii mesyzc\n >>";
+			cin >> array1[size1 - 1];
+			break;
+		}
 		default:
 			break;
 		}
-
-	}
-
-
-
-	for (int i = 0; i < size1; i++) {
-		if (array1[i] == 0) {
-			num_f_0 = i;
+		if (stop == true) {
 			break;
 		}
 	}
+	
 
-	for (int i = size1 - 1; i > 0; i--) {
-		if (array1[i] == 0) {
-			num_s_0 = i;
-			break;
-		}
-	}
-	cout_masiv(array1, size1, num_f_0, num_s_0);
-	if (num_f_0 == -1 || num_s_0 == -1 || num_f_0 == num_s_0 || num_s_0 - num_f_0 == 1) {
-		SetColor(4, 0);
-		cout << "ERROR!" << endl;
-		SetColor(7, 0);
-	}
-	else{
-		for (int i = num_f_0; i < num_s_0; i++) {
-			sum += array1[i];
-		}
-		avg = sum / (num_s_0 - num_f_0 - 1);
-
-		cout << "\nperchii null: " << num_f_0 << " poslednii null: " << num_s_0 << endl;
-		cout << "summa: " << sum << " avg: " << avg << endl;
-	}
 	delete[] array1;
 	return 0;
 }
