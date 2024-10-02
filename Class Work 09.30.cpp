@@ -8,7 +8,7 @@ void cout_masiv(int array[], int len) {
 	{
 		cout << array[i] << ", ";
 	}
-	cout << "\b\b.";
+	cout << "\b\b." << endl;
 }
 
 int randint(int min, int max) {
@@ -30,7 +30,7 @@ int main()
 	int size1 = 0, size2 = 0, size3 = 0, real_size = 0;
 
 
-	cout << "Enter arrays size: ";
+	cout << "Enter TWO arrays size: ";
 	cin >> size1 >> size2;
 	size3 = size1 + size2;
 	int* array1 = new int[size1];
@@ -38,10 +38,10 @@ int main()
 	int* array3 = new int[size3];
 	bool povtor = false;
 	for (int i = 0; i < size1; i++)
-		array1[i] = randint(0, 10);
+		array1[i] = randint(-10, 10);
 
 	for (int i = 0; i < size2; i++)
-		array2[i] = randint(0, 10);
+		array2[i] = randint(-10, 10);
 	cout << "first masiv: ";
 	cout_masiv(array1, size1);
 	cout << endl;
@@ -49,7 +49,7 @@ int main()
 	cout_masiv(array2, size2);
 	cout << endl;
 	array3[0] = array1[0];
-	for (int j = 1, i = 1; i < size1; j++, i++) {
+	for (int j = 1, i = 1; i < size1 + 1; j++, i++) {
 		for (int n = 0; n < real_size + 1; n++) {
 			if (array1[i] == array3[n]) {
 				povtor = true;
@@ -65,9 +65,7 @@ int main()
 			povtor = false;
 		}
 	}
-	cout << "first chikl: ";
-	cout_masiv(array3, real_size);
-	cout << endl;
+	
 
 	for (int j = real_size, i = 0; i < size2; j++, i++) {
 		for (int n = 0; n < real_size + 1; n++) {
