@@ -184,13 +184,17 @@ void code(int& player_score, int& bot_score) {
 	int player_num, bot_num;
 	player_num = randint(1, 6);
 	bot_num = randint(1, 6);
-	cout << "player: " << endl; 
+	cout << "player: " << endl;
 	cout_kubik(player_num);
+	player_score += player_num;
+	player_num = randint(1, 6);
 	cout_kubik2(player_num, 0);
+	player_score += player_num;
 	cout << "bot: " << endl;
 	cout_kubik(bot_num);
+	bot_score += bot_num;
+	bot_num = randint(1, 6);
 	cout_kubik2(bot_num, 6);
-	player_score += player_num;
 	bot_score += bot_num;
 }
 
@@ -229,6 +233,6 @@ int main()
 		cout << "Draw!";
 	}
 	cout << endl;
-	
+
 	return 0;
 }
