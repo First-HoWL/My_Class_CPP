@@ -1,6 +1,7 @@
 #include <iostream>
 #include <time.h>
 #include <windows.h>
+#include <conio.h>
 using namespace std;
 
 
@@ -201,22 +202,22 @@ void code(int& player_score, int& bot_score) {
 int main()
 {
 	srand(time(0));
-	int player_num, bot_num, a, player_score = 0, bot_score = 0;
+	int player_num, bot_num, player_score = 0, bot_score = 0;
 
-	cout << "type anything to start";
-	cin >> a;
+	cout << "type ENTER to start";
+	while (_getch() != 13);
 	system("cls");
 
 	code(player_score, bot_score);
 
-	cout << "type anything to continue";
-	cin >> a;
+	cout << "type ENTER to continue";
+	while (_getch() != 13);
 	system("cls");
 
 	code(player_score, bot_score);
 
-	cout << "type anything to continue";
-	cin >> a;
+	cout << "type ENTER to continue";
+	while (_getch() != 13);
 	system("cls");
 
 	code(player_score, bot_score);
