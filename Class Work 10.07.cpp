@@ -12,25 +12,10 @@ void SetColor(int textColor, int bgColor)
 		(bgColor << 4) | textColor);
 }
 
-void cout_masiv(int array[], int len, int a, int b) {
+void cout_masiv(int array[], int len) {
 	for (int i = 0; i < len; i++)
 	{
-		if (i == a || i == b) {
-			SetColor(5, 0);
-			cout << array[i];
-			SetColor(7, 0);
-			cout << ", ";
-		}
-		else if (i > a && i < b) {
-			SetColor(2, 0);
-			cout << array[i];
-			SetColor(7, 0);
-			cout << ", ";
-		}
-		else {
-			cout << array[i] << ", ";
-		}
-
+		cout << array[i] << ", ";
 	}
 	cout << "\b\b." << endl;
 }
@@ -199,8 +184,54 @@ void code(int& player_score, int& bot_score) {
 	bot_score += bot_num;
 }
 
+void delete1(int array[], int& size, bool a) {
+	if (a == false) {
+		for (int i = 0; i < size; i++) {
+			if (array[i] % 2 != 0) {
+				swap(array[i], array[size - 1]);
+				size--;
+				i--;
+			}
+		}
+	}
+	else{
+		for (int i = 0; i < size; i++) {
+			if (array[i] % 2 == 0) {
+				swap(array[i], array[size - 1]);
+				size--;
+				i--;
+			}
+		}
+	}
+}
+
+
 int main()
 {
+	srand(time(0));
+
+	int size = 0;
+	cout << "Size masivy: ";
+	cin >> size;
+	int* array = new int[size];
+	bool a;
+	cout << "Ydalit parni? 1: da, 0: net\n >>";
+	cin >> a;
+
+	for (int i = 0; i < size; i++)
+		array[i] = randint(-10, 10);
+	cout << endl;
+	cout << "started massiv: ";
+	cout_masiv(array, size);
+	cout << endl;
+	delete1(array, size, a);
+	cout << "finished massiv: ";
+	cout_masiv(array, size);
+	cout << endl;
+
+	delete[] array;
+
+	/*
 	srand(time(0));
 	int player_num, bot_num, player_score = 0, bot_score = 0;
 
@@ -234,6 +265,6 @@ int main()
 		cout << "Draw!";
 	}
 	cout << endl;
-
+	*/
 	return 0;
 }
