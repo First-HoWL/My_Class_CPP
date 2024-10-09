@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <time.h>
 #include <windows.h>
@@ -82,11 +83,13 @@ int main()
 
 	cout_masiv(field2);
 	int starting_pointX = 0, starting_pointY = 0;
+	cout << endl;
 	cout << "start point(Y, X): ";
 	cin >> starting_pointY >> starting_pointX;
-
+	cout << endl;
 	bool result = pass_maze(field2, x, starting_pointX, starting_pointY);
 	cout_masiv(field2);
+	cout << endl;
 	if (result){
 		SetColor(2, 0);
 		cout << "good" << endl;
