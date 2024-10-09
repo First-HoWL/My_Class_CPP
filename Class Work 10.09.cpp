@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <time.h>
 #include <windows.h>
@@ -14,9 +13,9 @@ void SetColor(int textColor, int bgColor)
 
 void cout_masiv(char array[10][21]) {
 	for (int i = 0; i < 10; i++)
-		{
-			cout << array[i] << endl;
-		}
+	{
+		cout << array[i] << endl;
+	}
 }
 
 int randint(int min, int max) {
@@ -68,16 +67,16 @@ int main()
 {
 	srand(time(0));
 	const int y = 10, x = 20;
-	char field2[y][x + 1] = { 
+	char field2[y][x + 1] = {
 		{"####################"},
-		{"...............#...#"},
-		{"#..............#...#"},
-		{"#.........##...#...#"},
-		{"#..........#...#...#"},
-		{"#..........###.#...#"},
-		{"#..................#"},
-		{"############...#...#"},
-		{"#............#.....e"},
+		{"........#......#...#"},
+		{"###.....#..###.#.#.#"},
+		{"#.......#..#...#.#.#"},
+		{"##.........#.#.#.#.#"},
+		{"#......#####.###.#.#"},
+		{"#.######.......#.#.#"},
+		{"#..#...#.#####.#.#.#"},
+		{"##...#...#...#...#.e"},
 		{"####################"}
 	};
 
@@ -86,12 +85,17 @@ int main()
 	cout << "start point(Y, X): ";
 	cin >> starting_pointY >> starting_pointX;
 
-	bool result = pass_maze(field2, 10, starting_pointX, starting_pointY);
+	bool result = pass_maze(field2, x, starting_pointX, starting_pointY);
 	cout_masiv(field2);
-	if (result)
+	if (result){
+		SetColor(2, 0);
 		cout << "good" << endl;
-	else
+		SetColor(7, 0);
+	}
+	else {
+		SetColor(4, 0);
 		cout << "not good" << endl;
-
+		SetColor(7, 0);
+	}
 	return 0;
 }
