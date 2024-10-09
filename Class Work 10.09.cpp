@@ -11,70 +11,16 @@ void SetColor(int textColor, int bgColor)
 		(bgColor << 4) | textColor);
 }
 
-void cout_masiv(int array[], int len) {
+void cout_masiv(char array[], int len) {
 	for (int i = 0; i < len; i++)
 	{
-		cout << array[i] << ", ";
+		cout << array[i];
 	}
-	cout << "\b\b." << endl;
+	cout << endl;
 }
 
 int randint(int min, int max) {
 	return(rand() % (max - min + 1) + min);
-}
-
-float seredne_arefmetichne(int array[], int len) {
-	float seredne = 0;
-	for (int i = 0; i < len; i++) {
-		seredne += array[i];
-	}
-	seredne = seredne / len;
-	return seredne;
-}
-
-void cout_kubik(int num) {
-	if (num == 1) {
-		cout << " _______ " << endl;
-		cout << "|       |" << endl;
-		cout << "|   #   |" << endl;
-		cout << "|       |" << endl;
-		cout << "|_______|" << endl;
-	}
-	else if (num == 2) {
-		cout << " _______ " << endl;
-		cout << "|       |" << endl;
-		cout << "| #   # |" << endl;
-		cout << "|       |" << endl;
-		cout << "|_______|" << endl;
-	}
-	else if (num == 3) {
-		cout << " _______ " << endl;
-		cout << "| #     |" << endl;
-		cout << "|   #   |" << endl;
-		cout << "|     # |" << endl;
-		cout << "|_______|" << endl;
-	}
-	else if (num == 4) {
-		cout << " _______ " << endl;
-		cout << "| #   # |" << endl;
-		cout << "|       |" << endl;
-		cout << "| #   # |" << endl;
-		cout << "|_______|" << endl;
-	}
-	else if (num == 5) {
-		cout << " _______ " << endl;
-		cout << "| #   # |" << endl;
-		cout << "|   #   |" << endl;
-		cout << "| #   # |" << endl;
-		cout << "|_______|" << endl;
-	}
-	else if (num == 6) {
-		cout << " _______ " << endl;
-		cout << "| #   # |" << endl;
-		cout << "| #   # |" << endl;
-		cout << "| #   # |" << endl;
-		cout << "|_______|" << endl;
-	}
 }
 
 void GoToXY(int column, int line)
@@ -88,119 +34,6 @@ void GoToXY(int column, int line)
 	SetConsoleCursorPosition(hConsole, coord);
 }
 
-void cout_kubik2(int num, int i) {
-	if (num == 1) {
-		GoToXY(14, i + 1);
-		cout << " _______ " << endl;
-		GoToXY(14, i + 2);
-		cout << "|       |" << endl;
-		GoToXY(14, i + 3);
-		cout << "|   #   |" << endl;
-		GoToXY(14, i + 4);
-		cout << "|       |" << endl;
-		GoToXY(14, i + 5);
-		cout << "|_______|" << endl;
-	}
-	else if (num == 2) {
-		GoToXY(14, i + 1);
-		cout << " _______ " << endl;
-		GoToXY(14, i + 2);
-		cout << "|       |" << endl;
-		GoToXY(14, i + 3);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 4);
-		cout << "|       |" << endl;
-		GoToXY(14, i + 5);
-		cout << "|_______|" << endl;
-	}
-	else if (num == 3) {
-		GoToXY(14, i + 1);
-		cout << " _______ " << endl;
-		GoToXY(14, i + 2);
-		cout << "| #     |" << endl;
-		GoToXY(14, i + 3);
-		cout << "|   #   |" << endl;
-		GoToXY(14, i + 4);
-		cout << "|     # |" << endl;
-		GoToXY(14, i + 5);
-		cout << "|_______|" << endl;
-	}
-	else if (num == 4) {
-		GoToXY(14, i + 1);
-		cout << " _______ " << endl;
-		GoToXY(14, i + 2);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 3);
-		cout << "|       |" << endl;
-		GoToXY(14, i + 4);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 5);
-		cout << "|_______|" << endl;
-	}
-	else if (num == 5) {
-		GoToXY(14, i + 1);
-		cout << " _______ " << endl;
-		GoToXY(14, i + 2);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 3);
-		cout << "|   #   |" << endl;
-		GoToXY(14, i + 4);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 5);
-		cout << "|_______|" << endl;
-	}
-	else if (num == 6) {
-		GoToXY(14, i + 1);
-		cout << " _______ " << endl;
-		GoToXY(14, i + 2);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 3);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 4);
-		cout << "| #   # |" << endl;
-		GoToXY(14, i + 5);
-		cout << "|_______|" << endl;
-	}
-}
-
-void code(int& player_score, int& bot_score) {
-	int player_num, bot_num;
-	player_num = randint(1, 6);
-	bot_num = randint(1, 6);
-	cout << "player: " << endl;
-	cout_kubik(player_num);
-	player_score += player_num;
-	player_num = randint(1, 6);
-	cout_kubik2(player_num, 0);
-	player_score += player_num;
-	cout << "bot: " << endl;
-	cout_kubik(bot_num);
-	bot_score += bot_num;
-	bot_num = randint(1, 6);
-	cout_kubik2(bot_num, 6);
-	bot_score += bot_num;
-}
-
-void delete1(int array[], int& size, bool a) {
-	if (a == false) {
-		for (int i = 0; i < size; i++) {
-			if (array[i] % 2 != 0) {
-				swap(array[i], array[size - 1]);
-				size--;
-				i--;
-			}
-		}
-	}
-	else{
-		for (int i = 0; i < size; i++) {
-			if (array[i] % 2 == 0) {
-				swap(array[i], array[size - 1]);
-				size--;
-				i--;
-			}
-		}
-	}
-}
 
 bool is_can_move(char maze[], int size, int x) {
 	if (x < 0 || x >= size)
@@ -210,16 +43,14 @@ bool is_can_move(char maze[], int size, int x) {
 	return true;
 }
 
-
-bool pass_maze(char maze[], int size, int x) {
+bool pass_maze(char maze[], int size, int x, int y) {
 	if (maze[x] == 'e')
 		return true;
 
-	maze[x] = '<';
+	maze[x] = '0';
 	if (is_can_move(maze, size, x - 1) && pass_maze(maze, size, x - 1))
 		return true;
 
-	maze[x] = '>';
 	if (is_can_move(maze, size, x + 1) && pass_maze(maze, size, x + 1))
 		return true;
 	maze[x] = ',';
@@ -230,12 +61,17 @@ int main()
 {
 	srand(time(0));
 	char field[11] = ".......e..";
-
+	char field2[5][11] = { {"##########"}, {".........#"}, {"#........#"}, {"#........e"}, {"##########"} };
+	cout_masiv(field2[0], 11);
+	cout_masiv(field2[1], 11);
+	cout_masiv(field2[2], 11);
+	cout_masiv(field2[3], 11);
+	cout_masiv(field2[4], 11);
 	cout << field << endl;
 	int starting_point = 0;
 	cout << "start point: ";
 	cin >> starting_point;
-	
+
 	bool result = pass_maze(field, 10, starting_point);
 	cout << field << endl;
 	if (result)
