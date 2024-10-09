@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <time.h>
 #include <windows.h>
@@ -11,12 +12,11 @@ void SetColor(int textColor, int bgColor)
 		(bgColor << 4) | textColor);
 }
 
-void cout_masiv(char array[], int len) {
-	for (int i = 0; i < len; i++)
-	{
-		cout << array[i];
-	}
-	cout << endl;
+void cout_masiv(char array[10][21]) {
+	for (int i = 0; i < 10; i++)
+		{
+			cout << array[i] << endl;
+		}
 }
 
 int randint(int min, int max) {
@@ -35,45 +35,59 @@ void GoToXY(int column, int line)
 }
 
 
-bool is_can_move(char maze[], int size, int x) {
+bool is_can_move(char maze[10][21], int size, int x, int y) {
 	if (x < 0 || x >= size)
 		return false;
-	if (maze[x] != '.' && maze[x] != 'e')
+	if (maze[y][x] != '.' && maze[y][x] != 'e')
 		return false;
 	return true;
 }
 
-bool pass_maze(char maze[], int size, int x, int y) {
-	if (maze[x] == 'e')
+bool pass_maze(char maze[10][21], int size, int x, int y) {
+	if (maze[y][x] == 'e')
 		return true;
 
-	maze[x] = '0';
-	if (is_can_move(maze, size, x - 1) && pass_maze(maze, size, x - 1))
+	maze[y][x] = '1';
+	if (is_can_move(maze, size, x, y + 1) && pass_maze(maze, size, x, y + 1))
 		return true;
 
-	if (is_can_move(maze, size, x + 1) && pass_maze(maze, size, x + 1))
+	if (is_can_move(maze, size, x + 1, y) && pass_maze(maze, size, x + 1, y))
 		return true;
-	maze[x] = ',';
+
+	if (is_can_move(maze, size, x, y - 1) && pass_maze(maze, size, x, y - 1))
+		return true;
+
+	if (is_can_move(maze, size, x - 1, y) && pass_maze(maze, size, x - 1, y))
+		return true;
+
+	maze[y][x] = '0';
 	return false;
 }
 
 int main()
 {
 	srand(time(0));
-	char field[11] = ".......e..";
-	char field2[5][11] = { {"##########"}, {".........#"}, {"#........#"}, {"#........e"}, {"##########"} };
-	cout_masiv(field2[0], 11);
-	cout_masiv(field2[1], 11);
-	cout_masiv(field2[2], 11);
-	cout_masiv(field2[3], 11);
-	cout_masiv(field2[4], 11);
-	cout << field << endl;
-	int starting_point = 0;
-	cout << "start point: ";
-	cin >> starting_point;
+	const int y = 10, x = 20;
+	char field2[y][x + 1] = { 
+		{"####################"},
+		{"...............#...#"},
+		{"#..............#...#"},
+		{"#.........##...#...#"},
+		{"#..........#...#...#"},
+		{"#..........###.#...#"},
+		{"#..................#"},
+		{"############...#...#"},
+		{"#............#.....e"},
+		{"####################"}
+	};
 
-	bool result = pass_maze(field, 10, starting_point);
-	cout << field << endl;
+	cout_masiv(field2);
+	int starting_pointX = 0, starting_pointY = 0;
+	cout << "start point(Y, X): ";
+	cin >> starting_pointY >> starting_pointX;
+
+	bool result = pass_maze(field2, 10, starting_pointX, starting_pointY);
+	cout_masiv(field2);
 	if (result)
 		cout << "good" << endl;
 	else
