@@ -60,7 +60,7 @@ bool pass_maze(char maze[10][21], int size, int x, int y) {
 	if (is_can_move(maze, size, x - 1, y) && pass_maze(maze, size, x - 1, y))
 		return true;
 
-	maze[y][x] = '0';
+	maze[y][x] = 'X';
 	return false;
 }
 
