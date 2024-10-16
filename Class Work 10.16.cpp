@@ -113,10 +113,79 @@ int plosha(Point a, Point b) {
 	return dlin * h;
 }
 
+bool is_date_correct(date a) {
+	if (a.m > 12) {
+		return false;
+	}
+	else if (a.d > 28){
+		if (a.d > 31 && a.m == 1)
+			return false;
+		if (a.d > 28 && a.m == 2) {
+			if (a.d > 29)
+				return false;
+			if (a.y % 400 == 0 && a.d == 29)
+				return true;
+			else if (a.y % 100 != 0)
+				return false;
+			else if (a.y % 4 == 0 && a.d == 29)
+				return true;
+			}
+		if (a.d > 31 && a.m == 3)
+			return false;
+		if (a.d > 30 && a.m == 4)
+			return false;
+		if (a.d > 31 && a.m == 5)
+			return false;
+		if (a.d > 30 && a.m == 6)
+			return false;
+		if (a.d > 31 && a.m == 7)
+			return false;
+		if (a.d > 31 && a.m == 8)
+			return false;
+		if (a.d > 30 && a.m == 9)
+			return false;
+		if (a.d > 31 && a.m == 10)
+			return false;
+		if (a.d > 30 && a.m == 11)
+			return false;
+		if (a.d > 31 && a.m == 12)
+			return false;
+		}
+	return true;
+}
+
+int riznica(date a, date b) {
+	int y_days = (b.y * 365) - (a.y * 365);
+	int m_days = ((b.y * 12) + b.m) * 30 - ((a.y * 12) + a.m) * 30;
+	int d_days = ((((b.y * 12) + b.m) * 30) + b.d) - ((((b.y * 12) + b.m) * 30) + b.d);
+	return y_days + m_days + d_days;
+}
+
 int main()
 {
 	srand(time(0));
+	
+	date data = { 2000, 2, 30 }, a, b;
+	cout << "First year mounth day";
+	cin >> a.y >> a.m >> a.d;
+	if (is_date_correct(a) == false)
+		cout << "Not Correct";
+	cout << "Seccond year mounth day";
+	cin >> b.y >> b.m >> b.d;
+	if (is_date_correct(b) == false)
+		cout << "Not Correct";
+	cout << riznica(a, b) << "days" << endl;
 
+
+	cout << "is date correct?" << endl;
+	cout << data.y << "." << data.m << "." << data.d << endl;
+	if (is_date_correct(data))
+		cout << "YES!!!";
+	else
+		cout << "No";
+
+
+	/*
 	Point TL = { 1, 1 }, BR = { 10, 10 };
 	pryamokyt(TL, BR);
 	cout << endl;
@@ -125,6 +194,7 @@ int main()
 	cout << "Perimetr: " << perimetr(TL, BR) << endl;
 	cout << "Plosha: " << plosha(TL, BR) << endl;
 	cout << "Diagonal: " << distance(TL, BR) << endl;
-	
+	*/
+
 	return 0;
 }
