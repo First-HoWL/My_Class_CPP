@@ -41,6 +41,19 @@ struct Time
 		return (((h * 60) + m) * 60) + s;
 	}
 
+	void time_s () {
+		if (s != 0)
+			s--;
+		else if (m != 0) {
+			m--;
+			s = 59;
+		}
+		else if (h != 0) {
+			h--;
+			m = 59;
+			s = 59;
+		}
+	}
 };
 
 void SetColor(int textColor, int bgColor)
@@ -147,7 +160,7 @@ bool is_date_correct(date a) {
 	if (a.m > 12 || a.m < 1 || a.d < 1 || a.y < 0) {
 		return false;
 	}
-	else if (a.d > 28){
+	else if (a.d > 28) {
 		if (a.d > 31 && a.m == 1)
 			return false;
 		if (a.d > 28 && a.m == 2) {
@@ -155,7 +168,7 @@ bool is_date_correct(date a) {
 				return false;
 			if (a.y % 400 == 0 || a.y % 100 != 0 && a.y % 4 == 0)
 				return true;
-			}
+		}
 		if (a.d > 31 && a.m == 3)
 			return false;
 		if (a.d > 30 && a.m == 4)
@@ -176,7 +189,7 @@ bool is_date_correct(date a) {
 			return false;
 		if (a.d > 31 && a.m == 12)
 			return false;
-		}
+	}
 	return true;
 }
 
@@ -189,29 +202,34 @@ int riznica(date a, date b) {
 int main()
 {
 	srand(time(0));
+	Time b;
 	int a;
 	cout << "sec: ";
 	cin >> a;
+	b.h = a / 3600;
+	b.m = (a % 3600) / 60;
+	b.s = (a % 3600) % 60;
 	system("cls");
-	for (int i = a; i > 0; i--){
-		cout << i << "sec";
+	for (int i = b.seconds(); i > 0; i--) {
+		cout << b.h << ":" << b.m << ":" << b.s;
+		b.time_s();
 		Sleep(1000);
 		system("cls");
 	}
-	cout << "End"
-	
-	
-	/*
-	Time time1 = { 01, 30, 1 }, time2 = { 20, 10, 3 }, new_time;
-	cout << "is time correct(1):" << time1.is_correct() << endl;
-	cout << "is time correct(2):" << time2.is_correct() << endl;
-	new_time = time1.riznica_vremeni(time2);
-	cout << new_time.h << ":" << new_time.m << ":" << new_time.s << endl;
+	cout << "End";
+
+
+		/*
+		Time time1 = { 01, 30, 1 }, time2 = { 20, 10, 3 }, new_time;
+		cout << "is time correct(1):" << time1.is_correct() << endl;
+		cout << "is time correct(2):" << time2.is_correct() << endl;
+		new_time = time1.riznica_vremeni(time2);
+		cout << new_time.h << ":" << new_time.m << ":" << new_time.s << endl;
 
 
 
-	
-	*/
 
-	return 0;
+		*/
+
+		return 0;
 }
