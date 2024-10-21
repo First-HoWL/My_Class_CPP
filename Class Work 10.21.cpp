@@ -28,22 +28,19 @@ struct Time
 	}
 
 	Time riznica_vremeni(Time b) {
-		int seconds = (secconds(b) - secconds(h, m, s));
+		int secconds = (b.seconds() - seconds());
 		Time new_time;
 
-		new_time.h = seconds / 3600;
-		new_time.m = (seconds % 3600) / 60;
-		new_time.s = (seconds % 3600) % 60;
+		new_time.h = secconds / 3600;
+		new_time.m = (secconds % 3600) / 60;
+		new_time.s = (secconds % 3600) % 60;
 
 		return new_time;
 	}
-	int secconds(Time a) {
-		return (((a.h * 60) + a.m) * 60) + a.s;
-	}
-
-	int secconds(int h, int m, int s) {
+	int seconds() {
 		return (((h * 60) + m) * 60) + s;
 	}
+
 };
 
 void SetColor(int textColor, int bgColor)
@@ -192,8 +189,20 @@ int riznica(date a, date b) {
 int main()
 {
 	srand(time(0));
-
-	Time time1 = { 10, 30, 1 }, time2 = { 20, 10, 3 }, new_time;
+	int a;
+	cout << "sec: ";
+	cin >> a;
+	system("cls");
+	for (int i = a; i > 0; i--){
+		cout << i << "sec";
+		Sleep(1000);
+		system("cls");
+	}
+	cout << "End"
+	
+	
+	/*
+	Time time1 = { 01, 30, 1 }, time2 = { 20, 10, 3 }, new_time;
 	cout << "is time correct(1):" << time1.is_correct() << endl;
 	cout << "is time correct(2):" << time2.is_correct() << endl;
 	new_time = time1.riznica_vremeni(time2);
@@ -201,36 +210,7 @@ int main()
 
 
 
-	/*
-	date data = { 2000, 2, 30 }, a, b;
-	cout << "First year mounth day";
-	cin >> a.y >> a.m >> a.d;
-	if (is_date_correct(a) == false)
-		cout << "Not Correct";
-	cout << "Seccond year mounth day";
-	cin >> b.y >> b.m >> b.d;
-	if (is_date_correct(b) == false)
-		cout << "Not Correct";
-	cout << riznica(a, b) << "days" << endl;
-
-
-	cout << "is date correct?" << endl;
-	cout << data.y << "." << data.m << "." << data.d << endl;
-	if (is_date_correct(data))
-		cout << "YES!!!";
-	else
-		cout << "No";
-
-
 	
-	Point TL = { 1, 1 }, BR = { 10, 10 };
-	pryamokyt(TL, BR);
-	cout << endl;
-	cout << "x1: " << TL.x << " y1: " << TL.y << endl;
-	cout << "x2: " << BR.x << " y2: " << BR.y << endl;
-	cout << "Perimetr: " << perimetr(TL, BR) << endl;
-	cout << "Plosha: " << plosha(TL, BR) << endl;
-	cout << "Diagonal: " << distance(TL, BR) << endl;
 	*/
 
 	return 0;
