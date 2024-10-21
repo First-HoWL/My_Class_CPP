@@ -72,11 +72,11 @@ bool pass_maze(char maze[10][21], int size, int x, int y) {
 }
 
 double distance(Point a, Point b) {
-	return pow(pow(b.x - a.x, 2) + (b.y - a.y, 2), 0.5);
+	return pow(pow(b.x - a.x, 2) + pow(b.y - a.y, 2), 0.5);
 }
 
 double distance(double x1, double y1, double x2, double y2) {
-	return pow(pow(x2 - x1, 2) + (y2 - y1, 2), 0.5);
+	return pow(pow(x2 - x1, 2) + pow(y2 - y1, 2), 0.5);
 }
 
 void pryamokyt(Point TL, Point BR) {
@@ -102,8 +102,8 @@ void pryamokyt(Point TL, Point BR) {
 }
 
 int perimetr(Point a, Point b) {
-	double dlin = pow(pow(b.x - a.x, 2) + pow(a.y - a.y, 2), 0.5);
-	double h = pow(pow(a.x - a.x, 2) + pow(b.y - a.y, 2), 0.5);
+	double dlin = pow(pow(b.x - a.x, 2), 0.5);
+	double h = pow(pow(b.y - a.y, 2), 0.5);
 	return (h + dlin) * 2;
 }
 
@@ -155,10 +155,8 @@ bool is_date_correct(date a) {
 }
 
 int riznica(date a, date b) {
-	int y_days = (b.y * 365) - (a.y * 365);
-	int m_days = ((b.y * 12) + b.m) * 30 - ((a.y * 12) + a.m) * 30;
-	int d_days = ((((b.y * 12) + b.m) * 30) + b.d) - ((((b.y * 12) + b.m) * 30) + b.d);
-	return y_days + m_days + d_days;
+	int d_days = ((((b.y * 12) + b.m) * 30) + b.d) - ((((a.y * 12) + a.m) * 30) + a.d);
+	return d_days;
 }
 
 int main()
