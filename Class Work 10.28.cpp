@@ -213,6 +213,13 @@ Train getRandomTrain() {
 	return a;
 }
 
+double costs(Train array[], int len) {
+	int a = 0;
+	for (int i = 0; i < len; i++) {
+		a += array[i].seatsTaken * array[i].price;
+	}
+	return a;
+}
 
 int main()
 {
@@ -229,6 +236,8 @@ int main()
 		trains[i].print();
 		cout << endl;
 	}
+
+	cout << costs(trains, 10) << "grn";
 
 
 	cout << endl;
