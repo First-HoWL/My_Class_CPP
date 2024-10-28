@@ -122,7 +122,7 @@ struct Train {
 		startDate.print_date();
 		cout << " - ";
 		endDate.print_date();
-		cout << " | " << setw(8) << price << "grn  | " << getFreeSeats() << " free sits.";
+		cout << " | " << setw(8) << price << "grn  | " << setw(4) << getFreeSeats() << " free sits" << "  | " << seatsTaken * price << " grn. ";
 	}
 
 	int getFreeSeats() { return seatsTotal - seatsTaken; }
@@ -222,6 +222,7 @@ int main()
 	for (int i = 0; i < 10; i++){
 		trains[i] = getRandomTrain();
 	}
+
 	bubble_trains(trains, 10);
 
 	for (int i = 0; i < 10; i++){
