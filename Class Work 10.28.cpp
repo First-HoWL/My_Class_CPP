@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include <iomanip> 
 using namespace std;
 
 struct Point {
@@ -115,13 +116,13 @@ struct Train {
 	date startDate, endDate;
 	int seatsTotal, seatsTaken;
 	double price;
-	string sitys[7] = { "Dnipro", "Kuiv", "Kharkov", "Lviv", "Ivano - Frankivsk", "Odessa", "Vinnitsa"};
+	string sitys[7] = { "Dnipro", "Kuiv", "Kharkov", "Lviv", "Ivano-Frankivsk", "Odessa", "Vinnitsa"};
 	void print(){
-		cout << number << " | " << startPoint << " - " << endPoint << " | ";
+		cout << setw(5) << number << " | " << setw(15) << startPoint << "  -  " << setw(15) << endPoint << "  | ";
 		startDate.print_date();
 		cout << " - ";
 		endDate.print_date();
-		cout << " | " << price << "grn | " << getFreeSeats() << " free sits.";
+		cout << " | " << setw(8) << price << "grn  | " << getFreeSeats() << " free sits.";
 	}
 
 	int getFreeSeats() { return seatsTotal - seatsTaken; }
@@ -159,14 +160,15 @@ void cout_list_dates(date dates_lists[], int len) {
 	cout << endl;
 }
 
-void bubble_date(date array[], int len) {
+
+void bubble_trains(Train array[], int len) {
 	bool is_changed = true;
 	int a;
 	for (int n = 0; n < len - 1; n++)
 	{
 		is_changed = false;
 		for (int i = 0; i < len - n - 1; i++) {
-			if (array[i].days() > array[i + 1].days()) {
+			if (array[i].startDate.days() > array[i + 1].startDate.days()) {
 				swap(array[i], array[i + 1]);
 				is_changed = true;
 			}
@@ -190,23 +192,21 @@ Train getRandomTrain() {
 	}
 	a.startPoint = a.sitys[startIndex];
 	a.endPoint = a.sitys[endIndex];
-	do {
-	
-	a.startDate = { randint(1, 31), randint(10, 12), 2024 };
-	a.endDate = { randint(a.startDate.d, 31), randint(a.startDate.m, 12), 2024 };
+
+	a.startDate = { randint(1, 30), randint(10, 12), 2024 };
+	a.endDate = { randint(a.startDate.d, 30), randint(a.startDate.m, 12), 2024 };
 	if (a.startDate.m == a.endDate.m) {
 		if (a.startDate.m == 11)
 			a.endDate.d = randint(a.startDate.d, 30);
 		else
-			a.endDate.d = randint(a.startDate.d, 31);
+			a.endDate.d = randint(a.startDate.d, 30);
 	}
 	else {
 		if (a.startDate.m == 11)
 			a.endDate.d = randint(1, 30);
 		else
-			a.endDate.d = randint(1, 31);
+			a.endDate.d = randint(1, 30);
 	}
-	} while (a.startDate.isCorrect() && a.endDate.isCorrect());
 	a.seatsTotal = randint(100, 400);
 	a.seatsTaken = randint(40, a.seatsTotal);
 	a.price = randint(20000, 70000) / 100.;
@@ -216,10 +216,20 @@ Train getRandomTrain() {
 
 int main()
 {
+	
 	srand(time(0));
-	Train t1 = getRandomTrain();
-	t1.print();
-	cout << endl;
+	Train trains[10];
+	for (int i = 0; i < 10; i++){
+		trains[i] = getRandomTrain();
+	}
+	bubble_trains(trains, 10);
 
+	for (int i = 0; i < 10; i++){
+		trains[i].print();
+		cout << endl;
+	}
+
+
+	cout << endl;
 	return 0;
 }
