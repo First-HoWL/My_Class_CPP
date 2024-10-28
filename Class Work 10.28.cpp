@@ -190,11 +190,30 @@ Train getRandomTrain() {
 	}
 	a.startPoint = a.sitys[startIndex];
 	a.endPoint = a.sitys[endIndex];
-	a.startDate = { randint(1, 31), 10, 2024 };
-	a.endDate = { randint(a.startDate.d, 31), 10, 2024 };
+	a.startDate = { randint(1, 31), randint(10, 12), 2024 };
+	a.endDate = { 1, randint(a.startDate.m, 12), 2024 };
+	if (a.startDate.m == a.endDate.m){
+		if (a.startDate.m == 11)
+			a.endDate.d = randint(a.startDate.d, 30);
+		else
+			a.endDate.d = randint(a.startDate.d, 30);
+	}
+	else{
+		if (a.startDate.m == 11)
+			a.endDate.d = randint(1, 30);
+		else 
+			a.endDate.d = randint(1, 30);
+	}
+	while (true) {
+		if (a.startDate.isCorrect() && a.endDate.isCorrect()) {
+			break;
+		}
+		a.startDate = { randint(1, 31), randint(10, 12), 2024 };
+		a.endDate = { randint(a.startDate.d, 31), randint(a.startDate.m, 12), 2024 };
+	}
 	a.seatsTotal = randint(100, 400);
 	a.seatsTaken = randint(40, a.seatsTotal);
-	a.price = randint(20000, 70000) / 100;
+	a.price = randint(20000, 70000) / 100.;
 	return a;
 }
 
