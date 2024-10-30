@@ -221,22 +221,125 @@ double costs(Train array[], int len) {
 }
 
 void coutField(char field[3][3]) {
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 2; j++)
-			cout << field[i][j] << "|";
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++)
+			cout << field[i][j] << " | ";
+		cout << "\b\b ";
 		if (i != 2)
-			cout << "\b\n-----\n";
+			cout << "\n---------\n";
 	}
+}
+
+void coutField(char field[3][3], int y1, int x1, int y2, int x2, int y3, int x3) {
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++){
+			if (i == y1 && j == x1 || i == y2 && j == x2 || i == y3 && j == x3) {
+				SetColor(2, 0);
+				cout << field[i][j];
+				SetColor(7, 0);
+				cout << " | ";
+			}
+			else 
+				cout << field[i][j] << " | ";
+		}
+		cout << "\b\b ";
+		if (i != 2)
+			cout << "\n---------\n";
+	}
+}
+
+bool makeMove(char field[3][3], int x, int y, char player) {
+	if ((x > 0 && x < 4) && (y > 0 && y < 4) && field[y - 1][x - 1] == ' ') {
+		field[y - 1][x - 1] = player;
+		return true;
+	}
+	return false;
+}
+
+bool isWin(char field[3][3], char player) {
+	if (field[0][0] == player && field[1][1] == player && field[2][2] == player) {
+		coutField(field, 0, 0, 1, 1, 2, 2);
+		return true;
+	}
+		
+	if (field[0][0] == player && field[1][0] == player && field[2][0] == player) {
+		coutField(field, 0, 0, 1, 0, 2, 0);
+		return true;
+	}
+	if (field[0][0] == player && field[0][1] == player && field[0][2] == player) {
+		coutField(field, 0, 0, 0, 1, 0, 2);
+		return true;
+	}
+	if (field[2][0] == player && field[1][1] == player && field[0][2] == player) {
+		coutField(field, 2, 0, 1, 1, 0, 2);
+		return true;
+	}
+	if (field[2][0] == player && field[2][1] == player && field[2][2] == player) {
+		coutField(field, 2, 0, 2, 1, 2, 2);
+		return true;
+	}
+	if (field[0][2] == player && field[1][2] == player && field[2][2] == player) {
+		coutField(field, 0, 2, 1, 2, 2, 2);
+		return true;
+	}
+	if (field[1][0] == player && field[1][1] == player && field[1][2] == player) {
+		coutField(field, 1, 0, 1, 1, 1, 2);
+		return true;
+	}
+	if (field[0][1] == player && field[1][1] == player && field[2][1] == player) {
+		coutField(field, 0, 1, 1, 1, 2, 1);
+		return true;
+	}
+	return false;
+}
+
+bool isDraw(char field[3][3]) {
+	for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < 3; i++) {
+			if (field[j][i] == ' ')
+				return false;
+		}
+	}
+	return true;
 }
 
 int main()
 {
-
 	srand(time(0));
-	
-	char field[3][3] = { {' ', 'X', ' '}, {'X', ' ', 'O'}, {'O', ' ', 'X'} };
 
-	coutField(field);
+	char field[3][3] = { {' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '} };
+	char player = 'X';
+	int counter = 0;
+	
+
+	while (true) {
+		if (isWin(field, player)) {
+			cout << endl << player << " WIN!!!!!";
+			break;
+		}
+		else if (isDraw(field)) {
+			coutField(field);
+			cout << endl << "Draw!!!!!";
+			break;
+		}
+		if (counter % 2 == 0)
+			player = 'X';
+		else
+			player = 'O';
+
+		coutField(field);
+		cout << "\nType coordinats for " << player <<": ";
+		int x, y;
+		cin >> x >> y;
+		if (makeMove(field, x, y, player) != true) {
+			cout << "\nYou can't move here!" << endl;
+		}
+		else 
+			counter++;
+		system("cls");
+	}
+
+
 	cout << endl;
 	return 0;
 }
