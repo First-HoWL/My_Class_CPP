@@ -294,12 +294,10 @@ bool isWin(char field[3][3], char player) {
 }
 
 bool isDraw(char field[3][3]) {
-	for (int j = 0; j < 3; j++) {
-		for (int i = 0; i < 3; i++) {
+	for (int j = 0; j < 3; j++)
+		for (int i = 0; i < 3; i++) 
 			if (field[j][i] == ' ')
 				return false;
-		}
-	}
 	return true;
 }
 
