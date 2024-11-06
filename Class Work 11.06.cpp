@@ -228,24 +228,51 @@ int main()
 
 	fclose(file);
 	*/
+	while (true){
+		int vibor;
+		FILE* file;
+		cout << "1. new file, 2. append numb, 3. reading numb, 4. sum 0. Exit" << endl << " >> ";
+		cin >> vibor;
+		system("cls");
+		if (vibor == 0)
+			break;
+	
+		if (vibor == 1) {
+			fopen_s(&file, FILE_PATH, "wb");
+			fclose(file);
+		}
+		else if (vibor == 2) {
+			int a;
+			
+			fopen_s(&file, FILE_PATH, "ab");
+			cout << "numb: ";
+			cin >> a;
+			fwrite(&a, sizeof(a), 1, file);
+			fclose(file);
+		}
+		else if (vibor == 3) {
+			int a;
+			fopen_s(&file, FILE_PATH, "rb");
+			while (fread(&a, sizeof(int), 1, file))
+			{
+				cout << a << " ";
+			}
+			cout << endl;
+			fclose(file);
+		}
+		else if (vibor == 4) {
+			int a, sum = 0;
+			fopen_s(&file, FILE_PATH, "rb");
+			while (fread(&a, sizeof(int), 1, file))
+			{
+				sum += a;
+			}
+			cout << sum << endl;
+			fclose(file);
+		}
 
-
-	FILE* file;
-	fopen_s(&file, FILE_PATH, "wb");
-	int numb[] = { 1, 2, 5, 123, 10 };
-	fwrite(&numb, sizeof(numb), 1, file);
-	fclose(file);
-
-
-	fopen_s(&file, FILE_PATH, "rb");
-	int number;
-
-	while (fread(&number, sizeof(int), 1, file))
-	{
-		cout << number << " ";
 	}
-
-	fclose(file);
+	
 
 	return 0;
 }
