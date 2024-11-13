@@ -7,6 +7,7 @@
 #include <iomanip> 
 using namespace std;
 #define FILE_PATH "num.txt"
+const int year = 2024;
 
 struct Car{
 	char brand[20];
@@ -18,7 +19,15 @@ struct Car{
 
 	void cout_car() {
 		cout << setw(20) << brand << " | " << setw(10) << model << " | " << setw(10) << nomer << " | " << setw(6) << rik_vipusky << " | ";
-		cout << setw(10) << probig << " | " << setw(5) << dvigun << endl;
+		cout << setw(10) << probig << " | " << setw(5) << dvigun << " | " << setw(10) << avg() << "km/y" << endl;
+	}
+
+	int years() {
+		return (year - rik_vipusky);
+	}
+
+	double avg() {
+		return (probig / years());
 	}
 };
 
@@ -73,6 +82,43 @@ void cout_car_from_file() {
 	fclose(file);
 }
 
+Car get_car_by_index(int index) {
+	FILE* file;
+	Car car;
+	if (fopen_s(&file, FILE_PATH, "rb")) {
+		cout << "NOT Correct!!!!" << endl;
+		return car;
+	}
+	fseek(file, sizeof(Car) * index, SEEK_SET);
+	fread(&car, sizeof(Car), 1, file);
+	fclose(file);
+	return car;
+}
+
+void set_car_by_index(int index, Car car) {
+	FILE* file;
+	if (fopen_s(&file, FILE_PATH, "r+b")) {
+		cout << "NOT Correct!!!!" << endl;
+		return;
+	}
+	fseek(file, sizeof(Car) * index, SEEK_SET);
+	fwrite(&car, sizeof(Car), 1, file);
+	fclose(file);
+}
+
+double avg_probig_rik() {
+	FILE* file;
+	fopen_s(&file, FILE_PATH, "rb");
+	Car car;
+	int i = 0, sum = 0, avg_car = 0, avg_cars;
+	while (fread(&car, sizeof(Car), 1, file)) {
+		sum += car.avg();
+		i++;
+	}
+	avg_cars = sum / i;
+	fclose(file);
+	return avg_cars;
+}
 
 int main()
 {
@@ -83,7 +129,7 @@ int main()
 
 	while (true) {
 		int vibor;
-		cout << "1. new car, 2. reading car, 0. Exit" << endl << " >> ";
+		cout << "1. new car, 2. reading car, 3. edit car, 4. avg km/year 0. Exit" << endl << " >> ";
 		cin >> vibor;
 		system("cls");
 		if (vibor == 0)
@@ -103,7 +149,21 @@ int main()
 		else if (vibor == 2) {
 			cout_car_from_file();
 		}
-
+		else if (vibor == 3) {
+			cout_car_from_file();
+			cout << "Car that you want to change: ";
+			int s_index;
+			cin >> s_index;
+			s_index--;
+			mycar = get_car_by_index(s_index);
+			
+			set_car_by_index(s_index, cin_car());
+			system("cls");
+			cout << "Correct!" << endl;
+		}
+		else if (vibor == 4) {
+			cout << "avg: " << avg_probig_rik() << "km/year" << endl;
+		}
 	}
 
 	return 0;
