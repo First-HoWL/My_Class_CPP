@@ -64,25 +64,45 @@ void buble_sort_records(records array[], int len) {
 	}
 }
 
+bool isnumber(string a) {
+	for (int i = 0; i < a.length(); i++)
+		if (!isdigit(a[i]))
+			return false;
+	return true;
+}
+
 int main() {
 	srand(time(0));
 	int first, second, vidpovid = 0, correct = 1, lives = 3;
 	string answer;
 	FILE* file;
+	bool stop = false;
 	
 	while (true) {
 		first = randint(10, 100);
 		second = randint(10, 100);
 
-		cout << first << " + " << second << " = ";
-		cin >> answer;
-		system("cls");
-		if (answer[0] == 'q') {
+		while (true) {
+			cout << first << " + " << second << " = ";
+			cin >> answer;
+			system("cls");
+			if (answer[0] == 'q') {
+				stop = true;
+				break;
+			}
+			else if (isnumber(answer)) {
+				vidpovid = stoi(answer);
+				break;
+			}
+			else{
+				SetColor(4, 0);
+				cout << "ERROR!" << endl;
+				SetColor(7, 0);
+			}
+		}
+
+		if (stop == true)
 			break;
-		}
-		else {
-			vidpovid = stoi(answer);
-		}
 		
 		if (vidpovid == (first + second)) {
 			cout << "Corect!!!\n";
@@ -116,8 +136,9 @@ int main() {
 
 
 	records rec[5], record;
+	fopen_s(&file, FILE_PATH, "ab");
+	fclose(file);
 
-	
 	fopen_s(&file, FILE_PATH, "rb");
 	int i = 1;
 	while (fread(&record, sizeof(records), 1, file)) {
